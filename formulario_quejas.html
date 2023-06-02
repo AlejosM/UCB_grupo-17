@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>UBER</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">📮 Formulario de Quejas</h1>
+        <h2 class="subtitle is-3">Llena sus datos del vehiculo: </h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="ID">ID registro:</label>
+            <div class="control">
+                <input class="input" type="text" id="ID" placeholder="4dgf54">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="nombre">nombre pasajero:</label>
+            <div class="control">
+                <input class="input" type="text" id="nombre" placeholder="Example: alfredo guzman">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="descripcion">descripcion:</label>
+            <div class="control">
+                <input class="input" type="text" id="descripcion" placeholder="coloque aqui su queja">
+            </div>
+        <div class="block">
+            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            function getValues() {
+                return {
+                    ID: document.getElementById('ID').value,
+                    nombre: document.getElementById('nombre').value,
+                    descripcion: document.getElementById('descripcion').value,
+                }
+            }
+            
+
+            const url = 'http://localhost:3000/formulario_quejas';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const medatata = { method, headers, body };
+            fetch(url, medatata)
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)))
+        }
+    </script>
+</body>
+</html>

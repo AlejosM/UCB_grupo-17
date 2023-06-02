@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+    <title>UBER</title>
+</head>
+<body>
+    <div class="box">
+        <h1 class="title is-1">🚘 Formulario Conductor</h1>
+        <h2 class="subtitle is-3">Llena sus datos del conductor: </h2>
+    </div>
+    <div class="box my-6">
+        <div class="field">
+            <label class="label" for="firstName">Nombre:</label>
+            <div class="control">
+                <input class="input" type="text" id="firstName" placeholder="Exammple: Carlos">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="lastName">Apellidos:</label>
+            <div class="control">
+                <input class="input" type="text" id="lastName" placeholder="Example: Terraza">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="email">Email:</label>
+            <div class="control">
+                <input class="input" type="text" id="email" placeholder="Example: carlos@gmail.com">
+            </div>
+        </div>
+        <div class="field">
+            <label class="label" for="licencia">Licencia:</label>
+            <div class="control">
+                <input class="input" type="text" id="licencia" placeholder="Example: 234535436464">
+            </div>
+        </div>
+        <div class="block">
+            <button class="button is-primary is-meidum is-fullwidth mt-6" onclick="submitForm()">Submit</button>
+        </div>
+    </div>
+    <script>
+        function submitForm() {
+
+            function getValues() {
+                return {
+                    firstName: document.getElementById('firstName').value,
+                    lastName: document.getElementById('lastName').value,
+                    email: document.getElementById('email').value,
+                    licencia: document.getElementById('licencia').value,
+                }
+            }
+            
+
+            const url = 'http://localhost:3000/formulario_conductores';
+            const method = 'POST';
+            const headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            };
+            const body = JSON.stringify(getValues());
+            const medatata = { method, headers, body };
+            fetch(url, medatata)
+            .then(response => response.json())
+            .then(response => console.log(JSON.stringify(response)))
+        }
+    </script>
+</body>
+</html>
